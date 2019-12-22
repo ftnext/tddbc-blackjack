@@ -40,9 +40,10 @@ class Deck:
 
 
 class Player:
-    def __init__(self, cards: List['Card']):
+    def __init__(self, cards: List['Card'], username=""):
         assert len(cards) == 2
         self.cards = cards
+        self.username = username
 
 
 class Dealer:
@@ -52,18 +53,28 @@ class Dealer:
 
 
 class Game:
-    def __init__(self):
+    def __init__(self, player_num=1, ask_username=False):
         self.deck = Deck()
         self.dealer = Dealer([self.deck.draw(), self.deck.draw()])
 
         self.players = []
-        for i in range(1):
-            player = Player([self.deck.draw(), self.deck.draw()])
+        for i in range(player_num):
+            username = ""
+            if ask_username:
+                username = input("プレイヤー名: ")
+            player = Player([self.deck.draw(), self.deck.draw()], username=username)
             self.players.append(player)
 
     def play(self, policy):
-        while policy(self.players[0]):
-            self.players[0].cards.append(self.deck.draw())
+        for player in self.players:
+            username = player.username
+            if username == "":
+                username = "unknown"
+            print(f"\n{username} さんのターンです。")
+
+            while policy(player):
+                player.cards.append(self.deck.draw())
+
         while dealer_policy(self.dealer.cards):
             self.dealer.cards.append(self.deck.draw())
 
@@ -121,14 +132,18 @@ def terminal_user_policy(player):
 
 
 def main():
-    game = Game()
+    player_num = int(input("ゲームのプレイヤー人数を指定してください").strip())
+
+    game = Game(player_num, ask_username=True)
     game.play(terminal_user_policy)
 
     print("ディーラーの手札:", game.dealer.cards)
     print("ディーラーのスコア", calculate_score(game.dealer.cards))
-    print("あなたのスコア", calculate_score(game.players[0].cards))
     results = game.result()
-    print("勝敗", results[game.players[0]])
+
+    for player in game.players:
+        print(f"{player.username}さんのスコア", calculate_score(player.cards))
+        print("勝敗", results[player])
 
 
 if __name__ == '__main__':

@@ -22,13 +22,15 @@ class CalculateScoreTestCase(unittest.TestCase):
 
 class PlayerTestCase(unittest.TestCase):
     def test_player_has_two_cards(self):
-        player = m.Player()
+        deck = m.Deck()
+        player = m.Player([deck.draw(), deck.draw()])
         actual = len(player.cards)
         self.assertEqual(actual, 2)
 
     def test_hit(self):
-        player = m.Player()
-        player.hit()
+        deck = m.Deck()
+        player = m.Player([deck.draw(), deck.draw()])
+        player.hit(deck)
         actual = len(player.cards)
         self.assertEqual(actual, 3)
 
@@ -46,7 +48,8 @@ class DeckTestCase(unittest.TestCase):
 
 class DealerTestCase(unittest.TestCase):
     def test_has_two_cards(self):
-        dealer = m.Dealer()
+        deck = m.Deck()
+        dealer = m.Dealer([deck.draw(), deck.draw()])
         actual = len(dealer.cards)
         self.assertEqual(actual, 2)
 

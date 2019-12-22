@@ -36,21 +36,35 @@ class Deck:
         return self.cards.pop()
 
 
-deck = Deck()
-
-
 class Player:
-    def __init__(self):
-        self.cards = [deck.draw(), deck.draw()]
+    def __init__(self, cards: List['Card']):
+        assert len(cards) == 2
+        self.cards = cards
 
-    def hit(self):
+    def hit(self, deck: 'Deck'):
         card = deck.draw()
         self.cards.append(card)
 
 
 class Dealer:
+    def __init__(self, cards: List['Card']):
+        assert len(cards) == 2
+        self.cards = cards
+
+
+class Game:
     def __init__(self):
-        self.cards = [deck.draw(), deck.draw()]
+        self.deck = Deck()
+        self.dealer = Dealer([self.deck.draw(), self.deck.draw()])
+
+        self.players = []
+        for i in range(1):
+            player = Player([self.deck.draw(), self.deck.draw()])
+            self.players.append(player)
+
+    def play(self, policy):
+        while policy(self.players[0]):
+            self.players[0].hit(self.deck)
 
 
 def calculate_score(cards: List['Card']) -> int:

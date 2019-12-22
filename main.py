@@ -1,3 +1,4 @@
+import random
 from typing import List
 
 
@@ -7,6 +8,10 @@ class Deck:
         for suit in ['♥', '♠', '♣', '◆']:
             for number in range(13):
                 self.cards.append(Card(suit, number))
+        random.shuffle(self.cards)
+
+    def draw(self):
+        return self.cards.pop()
 
 
 class Player:

@@ -49,3 +49,13 @@ class DealerTestCase(unittest.TestCase):
         dealer = m.Dealer()
         actual = len(dealer.cards)
         self.assertEqual(actual, 2)
+
+
+class GameTestCase(unittest.TestCase):
+    def test_play(self):
+        game = m.Game()
+        game.play(lambda player: len(player.cards) < 5)
+        self.assertEqual(len(game.players[0].cards), 5)
+
+
+

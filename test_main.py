@@ -42,3 +42,10 @@ class DeckTestCase(unittest.TestCase):
         deck = m.Deck()
         card = deck.draw()
         self.assertEqual(len(deck.cards), 51)
+
+
+class DealerTestCase(unittest.TestCase):
+    def test_has_two_cards(self):
+        dealer = m.Dealer()
+        actual = len(dealer.cards)
+        self.assertEqual(actual, 2)

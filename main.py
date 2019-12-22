@@ -48,6 +48,10 @@ class Player:
         self.cards.append(card)
 
 
+class Dealer:
+    pass
+
+
 def calculate_score(cards: List['Card']) -> int:
     total = 0
     contain_ace = 0

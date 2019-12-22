@@ -10,6 +10,20 @@ class Suit(enum.Enum):
     DIAMOND = '◆'
 
 
+class Card:
+    def __init__(self, suit: Suit, number: int) -> None:
+        self.suit = suit
+        self._number = number
+
+    @property
+    def number(self):
+        return self._number if self._number < 11 else 10
+
+    @property
+    def is_ace(self):
+        return self._number == 1
+
+
 class Deck:
     def __init__(self):
         self.cards = []
@@ -29,19 +43,9 @@ class Player:
     def __init__(self):
         self.cards = [deck.draw(), deck.draw()]
 
-
-class Card:
-    def __init__(self, suit: Suit, number: int) -> None:
-        self.suit = suit
-        self._number = number
-
-    @property
-    def number(self):
-        return self._number if self._number < 11 else 10
-
-    @property
-    def is_ace(self):
-        return self._number == 1
+    def hit(self):
+        card = deck.draw()
+        self.cards.append(card)
 
 
 def calculate_score(cards: List['Card']) -> int:

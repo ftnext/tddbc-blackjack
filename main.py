@@ -123,7 +123,12 @@ def terminal_user_policy(player):
 def main():
     game = Game()
     game.play(terminal_user_policy)
-    print(game.result())
+
+    print("ディーラーの手札:", game.dealer.cards)
+    print("ディーラーのスコア", calculate_score(game.dealer.cards))
+    print("あなたのスコア", calculate_score(game.players[0].cards))
+    results = game.result()
+    print("勝敗", results[game.players[0]])
 
 
 if __name__ == '__main__':

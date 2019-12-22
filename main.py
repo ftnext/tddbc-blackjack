@@ -22,9 +22,12 @@ class Deck:
         return self.cards.pop()
 
 
+deck = Deck()
+
+
 class Player:
     def __init__(self):
-        self.cards = [Card(Suit.HEART, 1), Card(Suit.DIAMOND, 11)]
+        self.cards = [deck.draw(), deck.draw()]
 
 
 class Card:

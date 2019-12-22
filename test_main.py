@@ -18,3 +18,10 @@ class CalculateScoreTestCase(unittest.TestCase):
         cards = [m.Card('❤', 1), m.Card('♤', 9), m.Card('❤', 1)]
         actual = m.calculate_score(cards)
         self.assertEqual(actual, 21)
+
+
+class PlayerTestCase(unittest.TestCase):
+    def test_player_has_two_cards(self):
+        player = m.Player()
+        actual = len(player.cards)
+        self.assertEqual(actual, 2)

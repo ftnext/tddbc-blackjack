@@ -1,11 +1,19 @@
+import enum
 import random
 from typing import List
+
+
+class Suit(enum.Enum):
+    HEART = '♥'
+    SPADE = '♠'
+    CLOVER = '♣'
+    DIAMOND = '◆'
 
 
 class Deck:
     def __init__(self):
         self.cards = []
-        for suit in ['♥', '♠', '♣', '◆']:
+        for suit in [Suit.HEART, Suit.SPADE, Suit.CLOVER, Suit.DIAMOND]:
             for number in range(13):
                 self.cards.append(Card(suit, number))
         random.shuffle(self.cards)
@@ -16,11 +24,11 @@ class Deck:
 
 class Player:
     def __init__(self):
-        self.cards = [Card('❤', 1), Card('♤', 11)]
+        self.cards = [Card(Suit.HEART, 1), Card(Suit.DIAMOND, 11)]
 
 
 class Card:
-    def __init__(self, suit: str, number: int) -> None:
+    def __init__(self, suit: Suit, number: int) -> None:
         self.suit = suit
         self._number = number
 

@@ -5,17 +5,17 @@ import main as m
 
 class CalculateScoreTestCase(unittest.TestCase):
     def test_sum_of_cards(self):
-        cards = [m.Card('❤', 10), m.Card('♤', 11)]
+        cards = [m.Card(m.Suit.HEART, 10), m.Card(m.Suit.SPADE, 11)]
         actual = m.calculate_score(cards)
         self.assertEqual(actual, 20)
 
     def test_sum_of_cards_with_ace(self):
-        cards = [m.Card('❤', 1), m.Card('♤', 11)]
+        cards = [m.Card(m.Suit.HEART, 1), m.Card(m.Suit.SPADE, 11)]
         actual = m.calculate_score(cards)
         self.assertEqual(actual, 21)
 
     def test_include_ace_twice(self):
-        cards = [m.Card('❤', 1), m.Card('♤', 9), m.Card('❤', 1)]
+        cards = [m.Card(m.Suit.HEART, 1), m.Card(m.Suit.SPADE, 9), m.Card(m.Suit.HEART, 1)]
         actual = m.calculate_score(cards)
         self.assertEqual(actual, 21)
 

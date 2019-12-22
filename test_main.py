@@ -13,4 +13,8 @@ class CalculateScoreTestCase(unittest.TestCase):
         cards = [m.Card('❤', 1), m.Card('♤', 11)]
         actual = m.calculate_score(cards)
         self.assertEqual(actual, 21)
-       
+
+    def test_include_ace_twice(self):
+        cards = [m.Card('❤', 1), m.Card('♤', 9), m.Card('❤', 1)]
+        actual = m.calculate_score(cards)
+        self.assertEqual(actual, 21)

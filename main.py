@@ -41,10 +41,6 @@ class Player:
         assert len(cards) == 2
         self.cards = cards
 
-    def hit(self, deck: 'Deck'):
-        card = deck.draw()
-        self.cards.append(card)
-
 
 class Dealer:
     def __init__(self, cards: List['Card']):
@@ -64,7 +60,7 @@ class Game:
 
     def play(self, policy):
         while policy(self.players[0]):
-            self.players[0].hit(self.deck)
+            self.players[0].cards.append(self.deck.draw())
 
 
 def calculate_score(cards: List['Card']) -> int:

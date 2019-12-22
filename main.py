@@ -61,6 +61,8 @@ class Game:
     def play(self, policy):
         while policy(self.players[0]):
             self.players[0].cards.append(self.deck.draw())
+        while dealer_policy(self.dealer.cards):
+            self.dealer.cards.append(self.deck.draw())
 
 
 def calculate_score(cards: List['Card']) -> int:

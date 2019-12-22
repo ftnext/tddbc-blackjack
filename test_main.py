@@ -30,3 +30,9 @@ class DeckTestCase(unittest.TestCase):
     def test(self):
         deck = m.Deck()
         self.assertEqual(len(deck.cards), 52)
+
+    def test_draw_cards(self):
+        deck = m.Deck()
+        card = deck.draw()
+        self.assertEqual(len(deck.cards), 51)
+        

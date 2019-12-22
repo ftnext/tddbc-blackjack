@@ -25,3 +25,8 @@ class PlayerTestCase(unittest.TestCase):
         player = m.Player()
         actual = len(player.cards)
         self.assertEqual(actual, 2)
+
+class DeckTestCaes(unittest.TestCase):
+    def test(self):
+        deck = m.Deck()
+        self.assertEqual(len(deck.cards), 52)

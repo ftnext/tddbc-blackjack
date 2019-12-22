@@ -1,8 +1,13 @@
 from typing import List
 
+
+class Deck:
+    pass
+
+
 class Player:
     def __init__(self):
-        pass
+        self.cards = [Card('❤', 1), Card('♤', 11)]
 
 
 class Card:

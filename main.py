@@ -2,7 +2,13 @@ from typing import List
 
 
 class Deck:
-    pass
+    def __init__(self):
+        self.cards = []
+        for suit in ['♥','♠','♣','◆']:
+            for number in range(13):
+                self.cards.append(Card(suit, number))
+
+
 
 
 class Player:

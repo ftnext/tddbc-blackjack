@@ -23,13 +23,16 @@ class Card:
     def is_ace(self):
         return self._number == 1
 
+    def __repr__(self):
+        return f'{self.suit.value}{self._number}'
+
 
 class Deck:
     def __init__(self):
         self.cards = []
         for suit in [Suit.HEART, Suit.SPADE, Suit.CLOVER, Suit.DIAMOND]:
             for number in range(13):
-                self.cards.append(Card(suit, number))
+                self.cards.append(Card(suit, number + 1))
         random.shuffle(self.cards)
 
     def draw(self):
@@ -107,3 +110,21 @@ def dealer_policy(cards):
     score = calculate_score(cards)
     return score <= 16
 
+
+def terminal_user_policy(player):
+    print("あなたの手札:", player.cards)
+    user_input = input("カードを引きますか？ [Yes/no]: ").strip(" \n")
+    if len(user_input) == 0:
+        return True
+    action = user_input[0].lower() == "y"
+    return action
+
+
+def main():
+    game = Game()
+    game.play(terminal_user_policy)
+    print(game.result())
+
+
+if __name__ == '__main__':
+    main()

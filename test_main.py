@@ -45,7 +45,16 @@ class DealerTestCase(unittest.TestCase):
         dealer = m.Dealer([deck.draw(), deck.draw()])
         actual = len(dealer.cards)
         self.assertEqual(actual, 2)
-
+    
+    def test_should_return_true_when_given_16(self):
+        cards = [m.Card(m.Suit.CLOVER, 10), m.Card(m.Suit.DIAMOND, 6)]
+        actual = m.dealer_policy(cards)
+        self.assertTrue(actual)
+    
+    def test_should_return_false_when_given_17(self):
+        cards = [m.Card(m.Suit.CLOVER, 10), m.Card(m.Suit.DIAMOND, 7)]
+        actual = m.dealer_policy(cards)
+        self.assertFalse(actual)
 
 class GameTestCase(unittest.TestCase):
     def test_play(self):

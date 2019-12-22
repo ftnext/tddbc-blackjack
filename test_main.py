@@ -56,6 +56,7 @@ class DealerTestCase(unittest.TestCase):
         actual = m.dealer_policy(cards)
         self.assertFalse(actual)
 
+
 class GameTestCase(unittest.TestCase):
     def test_play(self):
         game = m.Game()

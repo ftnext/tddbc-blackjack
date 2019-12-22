@@ -64,6 +64,29 @@ class Game:
         while dealer_policy(self.dealer.cards):
             self.dealer.cards.append(self.deck.draw())
 
+    def result(self):
+        dealer_score = calculate_score(self.dealer.cards)
+        result = {}
+        for player in self.players:
+            player_score = calculate_score(player.cards)
+
+            if player_score > 21:
+                result[player] = "Lose"
+                continue
+
+            if dealer_score > 21:
+                result[player] = "Win"
+                continue
+
+            if dealer_score == player_score:
+                result[player] = "Draw"
+            elif dealer_score > player_score:
+                result[player] = "Lose"
+            else:
+                result[player] = "Win"
+
+        return result
+
 
 def calculate_score(cards: List['Card']) -> int:
     total = 0

@@ -79,4 +79,6 @@ def calculate_score(cards: List['Card']) -> int:
 
 
 def dealer_policy(cards):
-    raise NotImplementedError
+    score = calculate_score(cards)
+    return score <= 16
+

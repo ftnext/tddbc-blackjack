@@ -49,7 +49,8 @@ class Player:
 
 
 class Dealer:
-    pass
+    def __init__(self):
+        self.cards = [deck.draw(), deck.draw()]
 
 
 def calculate_score(cards: List['Card']) -> int:

@@ -61,3 +61,12 @@ class GameTestCase(unittest.TestCase):
         game = m.Game()
         game.play(lambda player: len(player.cards) < 5)
         self.assertEqual(len(game.players[0].cards), 5)
+
+    def test_result(self):
+        game = m.Game()
+        game.dealer.cards = [m.Card(m.Suit.CLOVER, 10), m.Card(m.Suit.DIAMOND, 7)]
+        for player in game.players:
+            player.cards = [m.Card(m.Suit.CLOVER, 10), m.Card(m.Suit.DIAMOND, 8)]
+        actual = game.result()
+        self.assertEqual(actual, { game.players[0]: "Win"})
+
